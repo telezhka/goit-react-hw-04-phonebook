@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import css from '../css/Form.module.css';
 import PropTypes from 'prop-types';
 
-export class Form extends Component {
-  state = {
-    name: '',
-    number: '',
+export const Form = () => {
+  // state = {
+  //   name: '',
+  //   number: '',
+  // };
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const handleChange = event => {
+    const { input } = event.target.value;
+    // this.setState({ [name]: value });
+    console.log(input);
   };
 
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    const { name, number } = this.state;
+    // const { name, number } = this.state;
     if (!name || !number) {
       alert('Please enter name and number');
       return;
@@ -25,35 +28,35 @@ export class Form extends Component {
     console.log(this.state);
   };
 
-  render() {
-    const { name, number } = this.state;
-    return (
-      <form onSubmit={this.handleSubmit} className={css.form}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-            className={css.input}
-          />
-        </label>
-        <label>
-          Number:
-          <input
-            type="tel"
-            name="number"
-            value={number}
-            onChange={this.handleChange}
-            className={css.input}
-          />
-        </label>
-        <button type="submit">Add Contact</button>
-      </form>
-    );
-  }
-}
+  // render() {
+  //   const { name, number } = this.state;
+  return (
+    <form onSubmit={handleSubmit} className={css.form}>
+      <label>
+        Name:
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          className={css.input}
+        />
+      </label>
+      <label>
+        Number:
+        <input
+          type="tel"
+          name="number"
+          value={number}
+          onChange={handleChange}
+          className={css.input}
+        />
+      </label>
+      <button type="submit">Add Contact</button>
+    </form>
+  );
+  // }
+};
 Form.propTypes = {
   name: PropTypes.string,
   number: PropTypes.string,
