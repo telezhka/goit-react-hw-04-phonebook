@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import css from '../css/Form.module.css';
 import PropTypes from 'prop-types';
 
-export const Form = () => {
+export const Form = ({ onAddContact }) => {
   // state = {
   //   name: '',
   //   number: '',
@@ -10,12 +10,18 @@ export const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleChange = event => {
-    const { input } = event.target.value;
+  const handleChangeName = event => {
+    setName(event.target.value);
+    // name = event.target.value;
     // this.setState({ [name]: value });
-    console.log(input);
+    console.log(name);
   };
-
+  const handleChangeNumber = event => {
+    setNumber(event.target.value);
+    // number = event.target.value;
+    // this.setState({ [name]: value });
+    console.log(number);
+  };
   const handleSubmit = event => {
     event.preventDefault();
     // const { name, number } = this.state;
@@ -23,9 +29,11 @@ export const Form = () => {
       alert('Please enter name and number');
       return;
     }
-    this.props.onAddContact(name, number);
-    this.setState({ name: '', number: '' });
-    console.log(this.state);
+    onAddContact(name, number);
+    // this.setState({ name: '', number: '' });
+    setName('');
+    setNumber('');
+    // console.log(this.state);
   };
 
   // render() {
@@ -38,7 +46,7 @@ export const Form = () => {
           type="text"
           name="name"
           value={name}
-          onChange={handleChange}
+          onChange={handleChangeName}
           className={css.input}
         />
       </label>
@@ -48,7 +56,7 @@ export const Form = () => {
           type="tel"
           name="number"
           value={number}
-          onChange={handleChange}
+          onChange={handleChangeNumber}
           className={css.input}
         />
       </label>
