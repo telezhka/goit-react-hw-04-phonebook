@@ -1,0 +1,11 @@
+.listText {
+  margin-right: 10px;
+}
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.listButton {
+  padding: 8px;
+}
